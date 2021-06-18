@@ -24,7 +24,6 @@ function setup() {
 }
 
 function draw() {
-  checkMouseMovement()
   background(backgroundC)
   dragSegment(0, mouseX, mouseY);
   dragSegment2(0,mouseX,mouseY);
@@ -87,7 +86,15 @@ function getRandomColor() {
   return color;
 }
 
-function checkMouseMovement(){
+function mouseMoved(){
+  if(((oldM-mouseY)>30|| (oldM-mouseY)<-30) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
+    oldM=mouseY
+    backgroundC=getRandomColor()
+    document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
+  }
+}
+
+function touchMoved(){
   if(((oldM-mouseY)>30|| (oldM-mouseY)<-30) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
     oldM=mouseY
     backgroundC=getRandomColor()
