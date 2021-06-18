@@ -23,11 +23,9 @@ function setup() {
   oldM=y
 }
 
-function draw() {
-  background(backgroundC)
-  dragSegment(0, mouseX, mouseY);
-  dragSegment2(0,mouseX,mouseY);
-}
+// function draw() {
+  
+// }
 
 function dragSegment() {
 
@@ -91,7 +89,11 @@ function mouseMoved(){
     oldM=mouseY
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
+   
   }
+  background(backgroundC)
+  dragSegment(0, mouseX, mouseY);
+  dragSegment2(0,mouseX,mouseY);
   return false
 }
 
@@ -100,7 +102,11 @@ function touchMoved(){
     oldM=mouseY
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
+    
   }
+  background(backgroundC)
+  dragSegment(0, mouseX, mouseY);
+  dragSegment2(0,mouseX,mouseY);
   return false
 }
 
