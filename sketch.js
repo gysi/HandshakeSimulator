@@ -1,4 +1,4 @@
-let segLength = 200,
+let segLength, 
   x,
   y,
   x2,
@@ -12,15 +12,24 @@ function setup() {
   strokeWeight(20);
   stroke(255);
 
-  x = width / 2 - 350;
-  y = height / 2;
+  segLength=width/14;
+
+  x = windowWidth / 2 - segLength*1.5;
+  y = windowHeight / 2;
   x2 = x;
   y2 = y;
-  x3= width/ 2 +350
-  y3 =height/2;
+  x3= windowWidth/ 2 +segLength*1.5
+  y3 =windowHeight/2;
   x4=x3
   y4=y3
   oldM=y
+
+
+
+
+  background(backgroundC)
+  dragSegment(0, mouseX, mouseY);
+  dragSegment2(0,mouseX,mouseY);
 }
 
 // function draw() {
