@@ -5,21 +5,23 @@ let segLength,
   y2,x3,y3,x4,y4;
 let oldM;
 let backgroundC = getRandomColor()
+let width,height
 
 function setup() {
-  canvas=createCanvas(windowWidth, windowHeight);
+  width=window.innerWidth
+  height= window.innerHeight
+  canvas=createCanvas(width, height);
   canvas.parent("sketch")
   strokeWeight(20);
   stroke(255);
+  segLength=width/6;
 
-  segLength=width/14;
-
-  x = windowWidth / 2 - segLength*1.5;
-  y = windowHeight / 2;
+  x = width / 2 - segLength*1.5;
+  y = height / 2;
   x2 = x;
   y2 = y;
-  x3= windowWidth/ 2 +segLength*1.5
-  y3 =windowHeight/2;
+  x3= width/ 2 +segLength*1.5
+  y3 =height/2;
   x4=x3
   y4=y3
   oldM=y
