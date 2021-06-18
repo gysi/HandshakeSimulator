@@ -88,7 +88,7 @@ function getRandomColor() {
 }
 
 function checkMouseMovement(){
-  if(((oldM-mouseY)>30|| (oldM-mouseY)<-30) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+200){
+  if(((oldM-mouseY)>30|| (oldM-mouseY)<-30) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
     oldM=mouseY
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
