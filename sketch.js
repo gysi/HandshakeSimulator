@@ -92,6 +92,7 @@ function mouseMoved(){
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
   }
+  return false
 }
 
 function touchMoved(){
@@ -100,6 +101,7 @@ function touchMoved(){
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
   }
+  return false
 }
 
 
