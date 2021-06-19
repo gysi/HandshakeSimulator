@@ -14,7 +14,7 @@ function setup() {
   canvas.parent("sketch")
   strokeWeight(20);
   stroke(255);
-  segLength=width/6;
+  segLength=Math.min(width/4,200);
 
   x = width / 2 - segLength*1.5;
   y = height / 2;
@@ -25,9 +25,6 @@ function setup() {
   x4=x3
   y4=y3
   oldM=y
-
-
-
 
   background(backgroundC)
   dragSegment(0, mouseX, mouseY);

@@ -32,19 +32,18 @@ html, body {
     font-family: 'Bangers', cursive;
   }
 
-  .infolink, .infolink:hover,.infolink:active,.infolink:visited{
-    text-decoration: none;
-    color:white !important;
-    font-size: 1em;
-}
+  #infobar{
+	
+		position: absolute;;
+		bottom:3%;
+		right:3%;
+	}
 
-.infolink i:hover{
-    color:lightgray !important;
-}
-
-.bottomInfo{
-    position: absolute;
-    right: 20;
-    bottom:20;
-}
+	.infolink, .infolink:hover,.infolink:active,.infolink:visited{
+		text-decoration: none;
+		color:white !important;
+	}
+	.infolink i:hover{
+		color:lightgray !important;
+	}
   
