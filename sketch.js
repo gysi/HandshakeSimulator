@@ -99,7 +99,7 @@ function mouseMoved(){
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
    
   }
-  if(int(document.getElementById("counter").innerHTML)>1000&&int(document.getElementById("counter").innerHTML)<1010){
+  if(int(document.getElementById("counter").innerHTML)==1000){
     backgroundC="#fce800"
   }
   background(backgroundC)
@@ -115,7 +115,7 @@ function touchMoved(){
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
     
   }
-  if(int(document.getElementById("counter").innerHTML)>1000&&int(document.getElementById("counter").innerHTML)<1010){
+  if(int(document.getElementById("counter").innerHTML)==1000){
     backgroundC="#fce800"
   }
   background(backgroundC)
