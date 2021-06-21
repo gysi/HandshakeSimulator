@@ -93,11 +93,14 @@ function getRandomColor() {
 }
 
 function mouseMoved(){
-  if(((oldM-mouseY)>30|| (oldM-mouseY)<-30) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
+  if(((oldM-mouseY)>50|| (oldM-mouseY)<-50) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
     oldM=mouseY
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
    
+  }
+  if(int(document.getElementById("counter").innerHTML)>1000&&int(document.getElementById("counter").innerHTML)<1010){
+    backgroundC="#fce800"
   }
   background(backgroundC)
   dragSegment(0, mouseX, mouseY);
@@ -106,11 +109,14 @@ function mouseMoved(){
 }
 
 function touchMoved(){
-  if(((oldM-mouseY)>30|| (oldM-mouseY)<-30) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
+  if(((oldM-mouseY)>50|| (oldM-mouseY)<-50) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
     oldM=mouseY
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
     
+  }
+  if(int(document.getElementById("counter").innerHTML)>1000&&int(document.getElementById("counter").innerHTML)<1010){
+    backgroundC="#fce800"
   }
   background(backgroundC)
   dragSegment(0, mouseX, mouseY);
