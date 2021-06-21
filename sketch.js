@@ -1,8 +1,15 @@
-let segLength, 
-  x,
-  y,
-  x2,
-  y2,x3,y3,x4,y4;
+let segLength;
+let pi = Math.PI;
+let pi2 = pi*2.;
+let pid2 = pi/2.;
+let pid3 = pi/3.;
+let pid4 = pi/4.;
+let segment = {
+  first: { x:0, y:0, x2:0, y2:0, angle1:0, angle2:0 },
+  second: { x:0, y:0, x2:0, y2:0, angle1:0, angle2:0 }
+}
+let s1 = segment.first;
+let s2 = segment.second;
 let oldM;
 let backgroundC = getRandomColor()
 let width,height
@@ -16,69 +23,43 @@ function setup() {
   stroke(255);
   segLength=Math.min(width/4,200);
 
-  x = width / 2 - segLength*1.5;
-  y = height / 2;
-  x2 = x;
-  y2 = y;
-  x3= width/ 2 +segLength*1.5
-  y3 =height/2;
-  x4=x3
-  y4=y3
-  oldM=y
+  s1.x = width / 2 - segLength * 1.5 ;
+  s1.y = height / 2;
+  s1.x2 = s1.x;
+  s1.y2 = s1.y;
+  s2.x = width / 2 + segLength * 1.5;
+  s2.y = height / 2;
+  s2.x2 = s2.x;
+  s2.y2= s2.y;
+  oldM=s1.y;
 
-  background(backgroundC)
-  dragSegment(0, mouseX, mouseY);
-  dragSegment2(0,mouseX,mouseY);
+  background(backgroundC);
+  drawSegment(s1);
+  drawSegment(s2);
 }
 
-// function draw() {
-  
-// }
+function drawSegment(s) {
+  dx = mouseX - s.x;
+  dy = mouseY - s.y;
+  s.angle1 = atan2(dy, dx);
 
-function dragSegment() {
+  tx = mouseX - cos(s.angle1) * segLength;
+  ty = mouseY - sin(s.angle1) * segLength;
+  dx = tx - s.x2;
+  dy = ty - s.y2;
+  s.angle2 = atan2(dy, dx);
+  s.x = s.x2 + cos(s.angle2) * segLength;
+  s.y = s.y2 + sin(s.angle2) * segLength;
 
-  dx = mouseX - x;
-  dy = mouseY - y;
-  angle1 = atan2(dy, dx);
-
-  tx = mouseX - cos(angle1) * segLength;
-  ty = mouseY - sin(angle1) * segLength;
-  dx = tx - x2;
-  dy = ty - y2;
-  angle2 = atan2(dy, dx);
-  x = x2 + cos(angle2) * segLength;
-  y = y2 + sin(angle2) * segLength;
-
-  segment(x, y, angle1,true);
-  segment(x2, y2, angle2);
+  drawLine(s.x, s.y, s.angle1,true);
+  drawLine(s.x2, s.y2, s.angle2);
 }
 
-
-function dragSegment2() {
-  
-  dx2 = mouseX - x3;
-  dy2 = mouseY - y3;
-  angle3 = atan2(dy2, dx2);
-
-  tx2 = mouseX - cos(angle3) * segLength;
-  ty2 = mouseY - sin(angle3) * segLength;
-  dx2 = tx2 - x4;
-  dy2 = ty2 - y4;
-  angle4 = atan2(dy2, dx2);
-  x3 = x4 + cos(angle4) * segLength;
-  y3 = y4 + sin(angle4) * segLength;
-
-  segment(x3, y3, angle3,true);
-  segment(x4, y4, angle4,false);
-}
-
-function segment(x, y, a,flag=false) {
+function drawLine(x, y, a,flag=false) {
   push();
   translate(x, y);
   rotate(a);
   line(0, 0, segLength, 0);
-  newEndX = cos(a)*segLength
-  newEndY = sin(a)*segLength
   if(flag)ellipse(segLength,0,20,20)
   pop();
 }
@@ -93,35 +74,36 @@ function getRandomColor() {
 }
 
 function mouseMoved(){
-  if(((oldM-mouseY)>50|| (oldM-mouseY)<-50) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
-    oldM=mouseY
-    backgroundC=getRandomColor()
-    document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
-   
-  }
-  if(int(document.getElementById("counter").innerHTML)==1000){
-    backgroundC="#fce800"
-  }
-  background(backgroundC)
-  dragSegment(0, mouseX, mouseY);
-  dragSegment2(0,mouseX,mouseY);
-  return false
+  mouseTouchMoved();
 }
 
 function touchMoved(){
-  if(((oldM-mouseY)>50|| (oldM-mouseY)<-50) && mouseX >= width/2-50 && mouseX <= width/2+50 && mouseY >= height/2-200 && mouseY <= height/2+300){
+  mouseTouchMoved();
+}
+
+function isAngleConditionMet(){
+  let innerAngleS1 = ((s1.angle2-s1.angle1)+pi2)%pi2
+  let innerAngleS2 = pi2-(((s2.angle2-s2.angle1)+pi2)%pi2);
+  // console.log(innerAngleS2);
+  return ((innerAngleS1 >= 0-0.1 && innerAngleS1 <= pi) || innerAngleS1 > pi2 - 0.05)
+    && ((innerAngleS2 >= 0-0.1 && innerAngleS2 <= pi) || innerAngleS2 > pi2 - 0.05)
+    && sin(s1.angle2) + cos(s2.angle2) > -0.1 && sin(s1.angle2) + cos(s2.angle2) < 0.41;
+}
+
+function mouseTouchMoved(){
+  if(((oldM-mouseY)>50|| (oldM-mouseY)<-50) && mouseX >= width/2-80 && mouseX <= width/2+80 && mouseY >= height/2-200 && mouseY <= height/2+300
+    && isAngleConditionMet()
+  ){
     oldM=mouseY
     backgroundC=getRandomColor()
     document.getElementById("counter").innerHTML=int(document.getElementById("counter").innerHTML)+1
-    
   }
   if(int(document.getElementById("counter").innerHTML)==1000){
     backgroundC="#fce800"
   }
   background(backgroundC)
-  dragSegment(0, mouseX, mouseY);
-  dragSegment2(0,mouseX,mouseY);
-  return false
+  drawSegment(s1);
+  drawSegment(s2);
 }
 
 
