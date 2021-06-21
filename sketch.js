@@ -1,9 +1,6 @@
 let segLength;
 let pi = Math.PI;
 let pi2 = pi*2.;
-let pid2 = pi/2.;
-let pid3 = pi/3.;
-let pid4 = pi/4.;
 let segment = {
   first: { x:0, y:0, x2:0, y2:0, angle1:0, angle2:0 },
   second: { x:0, y:0, x2:0, y2:0, angle1:0, angle2:0 }
@@ -84,7 +81,6 @@ function touchMoved(){
 function isAngleConditionMet(){
   let innerAngleS1 = ((s1.angle2-s1.angle1)+pi2)%pi2
   let innerAngleS2 = pi2-(((s2.angle2-s2.angle1)+pi2)%pi2);
-  // console.log(innerAngleS2);
   return ((innerAngleS1 >= 0-0.1 && innerAngleS1 <= pi) || innerAngleS1 > pi2 - 0.05)
     && ((innerAngleS2 >= 0-0.1 && innerAngleS2 <= pi) || innerAngleS2 > pi2 - 0.05)
     && sin(s1.angle2) + cos(s2.angle2) > -0.1 && sin(s1.angle2) + cos(s2.angle2) < 0.41;
