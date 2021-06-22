@@ -72,10 +72,12 @@ function getRandomColor() {
 
 function mouseMoved(){
   mouseTouchMoved();
+  return false;
 }
 
 function touchMoved(){
   mouseTouchMoved();
+  return false;
 }
 
 function isAngleConditionMet(){
